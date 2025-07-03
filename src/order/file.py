@@ -1,5 +1,15 @@
-my_list = [1, 2, 3, 4, 5]
-print ("Введите число:")
-choice = int(input())
-result = sum(my_list, choice)
-print(f"Сумма списка {my_list} и введенного числа {choice} равна: {result}")
+try:
+        choice = int(input("Введите целое число N: "))
+        if choice <= 0:
+            print("N должно быть положительным числом.")
+        
+
+        number_array = list(range(1, choice + 1))
+        print("Массив чисел от 1 до", choice, ":", number_array)
+
+        array_sum = sum(number_array)
+        print("Сумма чисел в массиве:", array_sum)
+
+except ValueError:
+        print("Ошибка: Введите целое число.")
+
