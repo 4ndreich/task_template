@@ -1,15 +1,82 @@
-try:
-        choice = int(input("Введите целое число N: "))
-        if choice <= 0:
-            print("N должно быть положительным числом.")
+bilety = []
+
+bilet_1 = {
+        "место": 1,
+        "пассажир":f"{"Иванов И.И"}",
+        "Маршрут":"Новосибирск-> Москва", 
+        "Билет": "№1",
+        "Паспорт" :"1111 0111111",}
+
+bilety.append(bilet_1)
         
+bilet_2 = {
+        "место": 2,
+        "Пассажир":f"{"Петров П.П"}",
+        "Маршрут":"Новосибирск-> Казань", 
+        "Билет": "№2",
+        "Паспорт" :"2222 0111111",}
+bilety.append(bilet_2)
 
-        number_array = list(range(1, choice + 1))
-        print("Массив чисел от 1 до", choice, ":", number_array)
+bilet_3 = {
+        "место": 3,
+        "Пассажир":f"{"Сидоров С.С"}",
+        "Маршрут":"Новосибирск-> Барнаул", 
+        "Билет":"№3",
+        "Паспорт" :"3333 0111111",}
+bilety.append(bilet_3)
 
-        array_sum = sum(number_array)
-        print("Сумма чисел в массиве:", array_sum)
+bilet_4 = {
+        "место": 4,
+        "Пассажир":f"{"Мочалкин М.М"}",
+        "Маршрут":"Новосибирск-> Казань", 
+        "Билет":"№4",
+        "Паспорт" :"4444 0111111",}
+bilety.append(bilet_4)
 
-except ValueError:
-        print("Ошибка: Введите целое число.")
+bilet_5 = {
+        "место": 5,
+        "Пассажир":f"{"Белкин Б.Б"}",
+        "Маршрут":"Новосибирск-> Омск", 
+        "Билет":"№5",
+        "Паспорт" :"5555 0111111",}
+bilety.append(bilet_5)
 
+bilet_6 = {
+        "место": 6,
+        "Пассажир":f"{"Стрелкин С.С"}",
+        "Маршрут":"Новосибирск-> Томск", 
+        "Билет":"№6",
+        "Паспорт":"6666 0111111",}
+bilety.append(bilet_6)
+next_ticket_number = len(bilety) + 1
+next_ticket_place = len(bilety) +1
+print(bilety)
+def create_ticket():
+    
+
+    print("Создание нового билета:")
+race = input("Введите маршрут: ")
+full_name = input("Введите фамилию и инициалы пассажира: ")
+id = input("Введите данные паспорта: ")
+for i in range(1,8):    
+ new_ticket = {
+        "место": next_ticket_place,
+        "номер_билета": next_ticket_number,
+        "маршрут": race,
+        "ФИО": id,
+        "данные_паспорта": full_name
+}
+    
+bilety.append(new_ticket)
+    
+print(f"Билет успешно создан. Номер билета: {next_ticket_number}") 
+print(f"Билет успешно создан. Номер Места: {next_ticket_place}")
+print("Текущий список билетов:")
+for ticket in bilety:
+      print(bilety)
+
+
+
+      
+
+    
