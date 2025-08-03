@@ -1,82 +1,64 @@
-bilety = []
+ 
+phone_models = [ 
+ "iPhone 15", 
+ "Samsung Galaxy S23", 
+ "Google Pixel 8", 
+ "Xiaomi 14", 
+ "OnePlus 12", 
+ "Huawei P60", 
+ "Realme GT 3", 
+ "Nothing Phone 2", 
+ "Sony Xperia 1 V", 
+ "Motorola Edge 40" 
+] 
 
-bilet_1 = {
-        "место": 1,
-        "пассажир":f"{"Иванов И.И"}",
-        "Маршрут":"Новосибирск-> Москва", 
-        "Билет": "№1",
-        "Паспорт" :"1111 0111111",}
+print(f"Всего доступно моделей: {len(phone_models)}") 
+ 
+try: 
+    choice = int(input("\nВведите номер модели, которую хотите получить в подарок (1-10): ")) 
+ 
+    if 1 <= choice <= len(phone_models): 
+     print(f"\nПоздравляем! Вы получаете: {phone_models[choice - 1]}") 
+    else: 
+     print("\nОшибка: такого номера нет в списке!") 
+except ValueError: 
+    print("\nОшибка: введите целое число!") 
 
-bilety.append(bilet_1)
-        
-bilet_2 = {
-        "место": 2,
-        "Пассажир":f"{"Петров П.П"}",
-        "Маршрут":"Новосибирск-> Казань", 
-        "Билет": "№2",
-        "Паспорт" :"2222 0111111",}
-bilety.append(bilet_2)
-
-bilet_3 = {
-        "место": 3,
-        "Пассажир":f"{"Сидоров С.С"}",
-        "Маршрут":"Новосибирск-> Барнаул", 
-        "Билет":"№3",
-        "Паспорт" :"3333 0111111",}
-bilety.append(bilet_3)
-
-bilet_4 = {
-        "место": 4,
-        "Пассажир":f"{"Мочалкин М.М"}",
-        "Маршрут":"Новосибирск-> Казань", 
-        "Билет":"№4",
-        "Паспорт" :"4444 0111111",}
-bilety.append(bilet_4)
-
-bilet_5 = {
-        "место": 5,
-        "Пассажир":f"{"Белкин Б.Б"}",
-        "Маршрут":"Новосибирск-> Омск", 
-        "Билет":"№5",
-        "Паспорт" :"5555 0111111",}
-bilety.append(bilet_5)
-
-bilet_6 = {
-        "место": 6,
-        "Пассажир":f"{"Стрелкин С.С"}",
-        "Маршрут":"Новосибирск-> Томск", 
-        "Билет":"№6",
-        "Паспорт":"6666 0111111",}
-bilety.append(bilet_6)
-next_ticket_number = len(bilety) + 1
-next_ticket_place = len(bilety) +1
-print(bilety)
-def create_ticket():
-    
-
-    print("Создание нового билета:")
-race = input("Введите маршрут: ")
-full_name = input("Введите фамилию и инициалы пассажира: ")
-id = input("Введите данные паспорта: ")
-for i in range(1,8):    
- new_ticket = {
-        "место": next_ticket_place,
-        "номер_билета": next_ticket_number,
-        "маршрут": race,
-        "ФИО": id,
-        "данные_паспорта": full_name
+delivery_city = {
+    "Россия": ["Москва", "Санкт-Петербург", "Новосибирск",],
+    "Украина": ["Харьков", "Киев", "Караганда",],
+    "Беларусь": ["Минск", "Гомель", "Гродно"]
 }
+
+print("\nДоступные страны доставки:")
+countries = list(delivery_city.keys())
+for i, country in enumerate(countries, 1):
+        print(f"{i}. {country}")
     
-bilety.append(new_ticket)
+country_choice = int(input("\nВыберите страну доставки (1-3): "))
+if country_choice < 1 or country_choice > len(countries):
+        print("Ошибка: выбран неверный номер страны.")
+        exit()
     
-print(f"Билет успешно создан. Номер билета: {next_ticket_number}") 
-print(f"Билет успешно создан. Номер Места: {next_ticket_place}")
-print("Текущий список билетов:")
-for ticket in bilety:
-      print(bilety)
 
+selected_country = countries[country_choice-1]
+cities = delivery_city[selected_country]
+    
+print(f"\nДоступные города в {selected_country}:")
+for i, city in enumerate(cities, 1):
+        print(f"{i}. {city}")
+    
+city_choice = int(input("\nВыберите город доставки (1-3): "))
+if city_choice < 1 or city_choice > len(cities):
+        print("Ошибка: выбран неверный номер города.")
+        exit()
+ 
+selected_phone = phone_models[choice-1]
+selected_city = cities[city_choice-1]
+    
 
+print(f" Поздравляем! Вы получаете в подарок: {selected_phone}")
+print(f" Доставка будет осуществлена в: {selected_city}, {selected_country}")
 
-      
 
     
