@@ -1,64 +1,83 @@
- 
-phone_models = [ 
- "iPhone 15", 
- "Samsung Galaxy S23", 
- "Google Pixel 8", 
- "Xiaomi 14", 
- "OnePlus 12", 
- "Huawei P60", 
- "Realme GT 3", 
- "Nothing Phone 2", 
- "Sony Xperia 1 V", 
- "Motorola Edge 40" 
-] 
+base = {}
+print ("Добро пожаловать в наше приложение")
+while True:
+    choice = input("Введите 1, чтобы зарегистрироваться \nВведите 2, чтобы авторизоваться \nВведите 3, чтобы выйти из программы \nВведите 4,чтобы сменить пароль пользователя \n") 
+    print(base)
+    if choice == "1":
+        print("Процесс регистристрации")
+        login = input("Введите логин: \n")
+        if login in base:
+            print("Такой логин уже существует")
+            continue
+        if '#' in login:
+         print("Ошибка: Логин не должен содержать символ '#'")
+        
+        password = input ("Введите пароль: \n")
+        if password == "":
+            print("Пароль не может быть пустой строкой")
+            continue
 
-print(f"Всего доступно моделей: {len(phone_models)}") 
- 
-try: 
-    choice = int(input("\nВведите номер модели, которую хотите получить в подарок (1-10): ")) 
- 
-    if 1 <= choice <= len(phone_models): 
-     print(f"\nПоздравляем! Вы получаете: {phone_models[choice - 1]}") 
-    else: 
-     print("\nОшибка: такого номера нет в списке!") 
-except ValueError: 
-    print("\nОшибка: введите целое число!") 
-
-delivery_city = {
-    "Россия": ["Москва", "Санкт-Петербург", "Новосибирск",],
-    "Украина": ["Харьков", "Киев", "Караганда",],
-    "Беларусь": ["Минск", "Гомель", "Гродно"]
-}
-
-print("\nДоступные страны доставки:")
-countries = list(delivery_city.keys())
-for i, country in enumerate(countries, 1):
-        print(f"{i}. {country}")
-    
-country_choice = int(input("\nВыберите страну доставки (1-3): "))
-if country_choice < 1 or country_choice > len(countries):
-        print("Ошибка: выбран неверный номер страны.")
-        exit()
-    
-
-selected_country = countries[country_choice-1]
-cities = delivery_city[selected_country]
-    
-print(f"\nДоступные города в {selected_country}:")
-for i, city in enumerate(cities, 1):
-        print(f"{i}. {city}")
-    
-city_choice = int(input("\nВыберите город доставки (1-3): "))
-if city_choice < 1 or city_choice > len(cities):
-        print("Ошибка: выбран неверный номер города.")
-        exit()
- 
-selected_phone = phone_models[choice-1]
-selected_city = cities[city_choice-1]
-    
-
-print(f" Поздравляем! Вы получаете в подарок: {selected_phone}")
-print(f" Доставка будет осуществлена в: {selected_city}, {selected_country}")
+        password_again = input("Введите пароль повторно: \n")
+        if password == password_again:
+            base[login] = password
+            print("Процесс регистрации завершен успешно")
+        elif password != password_again:
+            print("Пароли не совпадают")
+            continue
+        else:
+            print("Error!!!")
+            break
+        login = input("Введите логин: \n")
+        attempts = 0
+        if login in base:
+            print("Такой существует")
+            password = input ("Введите пароль: \n")
+            if password == base[login]:
+                print("Вы успешно вошли в систему")
+                break
+            while attempts < 3:
+                attempts += 1
+                print("Пароль неверный")
+                print("Попробуйте ещё раз")
+                password = input("Введите пароль: \n")
+                if password == base[login]:
+                    print("Вы успешно вошли в систему")
+                    print(base)
+                    break
+            print("Пароль неверный")
+            print("Пройдите авторизацию заново")
+            break
+        else:
+            print("Такой пользователь не зарегистрирован")
+            continue
+     
+    elif choice == "4":
+        print("Смена пароля")
+        login = input("Введите ваш логин: \n")
+        if login in base:
+            password = input("Введите ваш пароль: \n")
+            if password == base[login]:
+                print(base)
+                print("Смена пароля")
+                print("Введите ваш новый пароль")
+                new_password = input()
+                base[login] = new_password
+                print(base)
+                continue
+            else:
+                print("Пароль неверный")
+                continue
+        else:
+            print("Логин не найден")
+            continue
+    else:
+        print("Выход из программы")
+        break
+import uuid
+def generate_unique_id():
+  return uuid.uuid4()
+user_id = generate_unique_id()
+print(f"Уникальный ID пользователя: {user_id}")
 
 
     
