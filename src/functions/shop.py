@@ -4,7 +4,7 @@ shop = {
     },
     "мучное": {
         "хлеб": 200,
-    }
+    },
 }
 def add_products(user_group, **products):
     if user_group in shop:
@@ -14,18 +14,18 @@ def add_products(user_group, **products):
         shop[user_group] = products
         print(f"Создан новый раздел '{user_group}' с товарами")
     return shop
+
 def remove_product(group_name, product_name):
     if group_name in shop:
         if product_name in shop[group_name]:
             del shop[group_name][product_name]
             print(f"Товар '{product_name}' удален из раздела '{group_name}'")
             return True
-        else:
-            print(f"Ошибка: Товар '{product_name}' не найден в разделе '{group_name}'")
-            return False
-    else:
-        print(f"Ошибка: Раздел '{group_name}' не найден")
+        print(f"Ошибка: Товар '{product_name}' не найден в разделе '{group_name}'")
         return False
+    print(f"Ошибка: Раздел '{group_name}' не найден")
+    return False
+
 def print_all_products():
     if not shop:
         print("Магазин пуст!")
@@ -44,14 +44,14 @@ def print_all_products():
 def print_group_products(group_name):
     if group_name in shop:
         print(f"\nТОВАРЫ В РАЗДЕЛЕ '{group_name.upper()}':")
-        if shop[group_name]:
-            for product, price in shop[group_name].items():
-                print(f"  - {product}: {price} руб.")
-        else:
+        return
+    if shop[group_name]:
+        for product, price in shop[group_name].items():
+            print(f"  - {product}: {price} руб.")
             print("  (товары отсутствуют)")
         print()
-    else:
         print(f"Ошибка: Раздел '{group_name}' не найден\n")
+
 def change_price(group_name, product_name, percent):
     if group_name in shop:
         if product_name in shop[group_name]:
@@ -61,20 +61,20 @@ def change_price(group_name, product_name, percent):
             action = "повышена" if percent > 0 else "снижена"
             print(f"Цена товара '{product_name}' {action} с {old_price} до {new_price} руб.")
             return True
-        else:
-            print(f"Ошибка: Товар '{product_name}' не найден в разделе '{group_name}'")
-            return False
-    else:
-        print(f"Ошибка: Раздел '{group_name}' не найден")
+
+        print(f"Ошибка: Товар '{product_name}' не найден в разделе '{group_name}'")
         return False
+    print(f"Ошибка: Раздел '{group_name}' не найден")
+    return False
+
 def remove_group(group_name):
     if group_name in shop:
         del shop[group_name]
         print(f"Раздел '{group_name}' полностью удален")
         return True
-    else:
-        print(f"Ошибка: Раздел '{group_name}' не найден")
-        return False
+    print(f"Ошибка: Раздел '{group_name}' не найден")
+    return False
+
 def main():
     while True:
         print("МАГАЗИН - ГЛАВНОЕ МЕНЮ")
