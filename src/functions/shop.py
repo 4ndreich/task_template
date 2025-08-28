@@ -29,7 +29,7 @@ def remove_product(group_name, product_name):
 def print_all_products():
     if not shop:
         print("Магазин пуст!")
-        return   
+        return
     print("\n" + "="*40)
     print("ВСЕ ТОВАРЫ В МАГАЗИНЕ:")
     print("="*40)
@@ -85,7 +85,7 @@ def main():
         print("5. Изменить цену товара")
         print("6. Удалить раздел")
         print("7. Выход")
-        choice = input("Выберите действие (1-7): ").strip()       
+        choice = input("Выберите действие (1-7): ").strip()
         if choice == '1':
             group = input("Введите название раздела: ").strip()
             products_input = input("Введите товары в формате 'товар:цена, товар:цена': ").strip()
@@ -97,20 +97,20 @@ def main():
                         products[name.strip()] = float(price.strip())
                 except ValueError:
                     print("Ошибка формата ввода! Используйте формат 'товар:цена, товар:цена'")
-                    continue         
+                    continue
             if products:
                 add_products(group, **products)
             else:
-                print("Не введены товары для добавления")        
+                print("Не введены товары для добавления")
         elif choice == '2':
             group = input("Введите название раздела: ").strip()
             product = input("Введите название товара: ").strip()
-            remove_product(group, product)      
+            remove_product(group, product)
         elif choice == '3':
-            print_all_products()      
+            print_all_products()
         elif choice == '4':
             group = input("Введите название раздела: ").strip()
-            print_group_products(group)        
+            print_group_products(group)
         elif choice == '5':
             group = input("Введите название раздела: ").strip()
             product = input("Введите название товара: ").strip()
@@ -118,10 +118,10 @@ def main():
                 percent = float(input("Введите процент изменения (+ для повышения, - для снижения): ").strip())
                 change_price(group, product, percent)
             except ValueError:
-                print("Ошибка: введите число для процента изменения")        
+                print("Ошибка: введите число для процента изменения")
         elif choice == '6':
             group = input("Введите название раздела для удаления: ").strip()
-            remove_group(group)      
+            remove_group(group)
         elif choice == '7':
             print("Работа программы завершена. До свидания!")
             break

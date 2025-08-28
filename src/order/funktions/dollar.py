@@ -24,7 +24,7 @@ def main():
         exchange_dollars = round(exchange_rub / rate, 2)
         print(f"Продайте {exchange_rub:.2f} рублей для покупки {exchange_dollars:.2f} долларов.")
     else:
-        # Продаём излишек долларов для покупки рублей
+        # Продаём излишек долларов для покупки рублей !
         exchange_dollars = round(-dollar_diff, 2)
         exchange_rub = round(exchange_dollars * rate, 2)
         print(f"Продайте {exchange_dollars:.2f} долларов для покупки {exchange_rub:.2f} рублей.")

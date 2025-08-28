@@ -1,46 +1,28 @@
-base = {" Место:1"
-        " Билет: №132411" 
-        " Маршрут: Москва -> Питер"
-        " Пассажир: Иванов И.И" 
-        " Паспорт: 888 010101"}
+shop ={
+    "молочное":{
+        "молоко": 100,
+    },
+    "мучное":{
+        "хлеб":200,
+    },
+}
+def add_products(user_group,shop=shop, **products):
+    if user_group in shop:
+        shop[user_group].update(products)
 
-base.update({"Место:2"
-        " Билет: №1324113" 
-        " Маршрут: Москва -> Воронеж"
-        " Пассажир: Иванов И.И" 
-        " Паспорт: 5777 010101"})
-base.update({"Место:3"
-        " Билет: №132412" 
-        " Маршрут: Москва -> Новосибирск"
-        " Пассажир: Иванов И.И" 
-        " Паспорт: 2121 010101"})
-base.update({"Место:4"
-        " Билет: №132414" 
-        " Маршрут: Москва -> Барнаул"
-        " Пассажир: Иванов И.И" 
-        " Паспорт: 4141 010101"})
-base.update({"Место:5"
-        " Билет: №13241211" 
-        " Маршрут: Москва -> Крым"
-        " Пассажир: Иванов И.И" 
-        " Паспорт: 5151 010101"})
-base.update({"Место:6"
-        " Билет: №132412" 
-        " Маршрут: Москва -> Новосибирск"
-        " Пассажир: Иванов И.И" 
-        " Паспорт: 5111 010141"})
+    elif user_group not in shop:
+        shop.update({user_group:{}})
+        shop[user_group].update(products)
 
-for dictionary in base:
-    print(dictionary)
+    else:
+        return "ошибка"
+    return shop
 
-def create_ticket():
-    ticket = {}
-    ticket["маршурт билет"] = input("Введите маршрут: ")
-    ticket["ФИО_пользователя"] = input("Введите фамилию и инициалы: ")
-    ticket["данные паспорта"] = input("введите данные паспорта: ")
-    return ticket
+def print_all_products(shop=shop):
+    for group, array in shop.items():
+        print("Раздел: " + group)
+        for product, price in array.items():
+            print(product+ "  -   "+ str(price))
 
-
-
-    
-
+add_products("молочное",сыр=200, молоко=100)
+print_all_products()
