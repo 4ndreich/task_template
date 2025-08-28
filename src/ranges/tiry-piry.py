@@ -1,4 +1,4 @@
-def тыры_пыры():
+def tyry_pyry():
     for i in range(1, 101):
         if i % 3 == 0 and i % 5 == 0:
             print("тыры-пыры")
@@ -9,4 +9,4 @@ def тыры_пыры():
         else:
             print(i)
 
-тыры_пыры()
+tyry_pyry()
