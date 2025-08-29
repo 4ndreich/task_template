@@ -75,6 +75,21 @@ def remove_group(group_name):
     print(f"Ошибка: Раздел '{group_name}' не найден")
     return False
 
+def products_from_user_input(products,products_input):
+    try:
+        for item in products_input.split(','):
+            name, price = item.split(':')
+            products[name.strip()] = float(price.strip())
+    except ValueError:
+        print("Ошибка формата ввода! Используйте формат 'товар:цена, товар:цена'")
+
+def change_price_from_user_unput(group,product):
+    try:
+        percent = float(input("Введите процент изменения (+ для повышения, - для снижения): ").strip())
+        change_price(group,product,percent)
+    except ValueError:
+        print("Ошибка: введите число для процента изменения")
+
 def main():
     while True:
         print("МАГАЗИН - ГЛАВНОЕ МЕНЮ")
@@ -91,13 +106,7 @@ def main():
             products_input = input("Введите товары в формате 'товар:цена, товар:цена': ").strip()
             products = {}
             if products_input:
-                try:
-                    for item in products_input.split(','):
-                        name, price = item.split(':')
-                        products[name.strip()] = float(price.strip())
-                except ValueError:
-                    print("Ошибка формата ввода! Используйте формат 'товар:цена, товар:цена'")
-                    continue
+                products_from_user_input(products,products_input)
             if products:
                 add_products(group, **products)
             else:
@@ -114,11 +123,7 @@ def main():
         elif choice == '5':
             group = input("Введите название раздела: ").strip()
             product = input("Введите название товара: ").strip()
-            try:
-                percent = float(input("Введите процент изменения (+ для повышения, - для снижения): ").strip())
-                change_price(group, product, percent)
-            except ValueError:
-                print("Ошибка: введите число для процента изменения")
+            change_price_from_user_unput(group,product)
         elif choice == '6':
             group = input("Введите название раздела для удаления: ").strip()
             remove_group(group)
