@@ -48,31 +48,38 @@ def print_all_products():
 
 
 def print_group_products(group_name):
-    if group_name in shop:
-        print(f"\nТОВАРЫ В РАЗДЕЛЕ '{group_name.upper()}':")
+    if group_name not in shop:
+        print(f"Ошибка: Раздел '{group_name}' не найден\n")
         return
-    if shop[group_name]:
+
+    print(f"\nТОВАРЫ В РАЗДЕЛЕ '{group_name.upper()}':")
+
+    if not shop[group_name]:
+        print('  (товары отсутствуют)')
+    else:
         for product, price in shop[group_name].items():
             print(f'  - {product}: {price} руб.')
-            print('  (товары отсутствуют)')
-        print()
-        print(f"Ошибка: Раздел '{group_name}' не найден\n")
+
+    print()
 
 
 def change_price(group_name, product_name, percent):
-    if group_name in shop:
-        if product_name in shop[group_name]:
-            old_price = shop[group_name][product_name]
-            new_price = round(old_price * (1 + percent / 100), 2)
-            shop[group_name][product_name] = new_price
-            action = 'повышена' if percent > 0 else 'снижена'
-            print(f"Цена товара '{product_name}' {action} с {old_price} до {new_price} руб.")
-            return True
+    if group_name not in shop:
+        print(f"Ошибка: Раздел '{group_name}' не найден")
+        return False
 
+    if product_name not in shop[group_name]:
         print(f"Ошибка: Товар '{product_name}' не найден в разделе '{group_name}'")
         return False
-    print(f"Ошибка: Раздел '{group_name}' не найден")
-    return False
+
+    old_price = shop[group_name][product_name]
+    new_price = round(old_price * (1 + percent / 100), 2)
+    shop[group_name][product_name] = new_price
+
+    action = 'повышена' if percent > 0 else 'снижена'
+    print(f"Цена товара '{product_name}' {action} с {old_price} до {new_price} руб.")
+
+    return True
 
 
 def remove_group(group_name):
